@@ -1,3 +1,4 @@
+<?php
 $client_id = 'ZohoApiClientId';
 $client_secret = 'ZohoApiClientSecret';
 $access_token  = 'ZohoApiAccessToken';
@@ -48,3 +49,4 @@ if( isset( $response->access_token ) && $response->access_token != '' ){
 }	else {
 	echo 'Refresh Token is not valid';
 }
+?>
