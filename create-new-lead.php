@@ -6,6 +6,20 @@ $refresh_token = 'ZohoApiRefreshToken';
 
 $curl = 'https://accounts.zoho.in/oauth/v2/token?refresh_token='.$refresh_token.'&client_id='.$client_id.'&client_secret='.$client_secret.'&grant_type=refresh_token';
 
+$ch = curl_init($curl);
+$headers = array(
+    'Content-Type: application/json',
+);
+curl_setopt($ch, CURLOPT_VERBOSE, 1);//standard i/o streams 
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);// Turn off the server and peer verification 
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//Set to return data to string ($response) 
+curl_setopt($ch, CURLOPT_POST, 1);//Regular post 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+$response = curl_exec($ch);
+
+$response = json_decode( $response );
+
 echo '<pre>'; print_r( $response ); echo '</pre>';
 echo isset( $response->access_token ) ? $response->access_token : '';
 
